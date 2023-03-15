@@ -6,10 +6,10 @@
   "types": "./src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "4.11.0",
-    "prisma": "^4.11.0"
-  },
-  "devDependencies": {
+    "@prisma/client": "4.11.0"
+},
+"devDependencies": {
+    "prisma": "^4.11.0",
     "to-checksum-address": "^1.0.0"
   }
 }
