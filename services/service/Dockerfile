@@ -36,6 +36,16 @@ COPY turbo.json turbo.json
 
 RUN yarn turbo run build --filter=@yc/data-provider...
 
+# We want to reinstall node_modules without devdependencies
+# But we need to preserve the result from prisma generate
+RUN mv ./node_modules/.prisma/ ./.prisma/
+RUN mv ./node_modules/@prisma/ ./@prisma/
+RUN rm -r ./node_modules && mkdir node_modules
+
+RUN yarn install --production
+RUN rm -rf ./node_modules/@prisma/ && mv ./@prisma/ ./node_modules/@prisma/
+RUN rm -rf ./node_modules/.prisma/ && mv ./.prisma/ ./node_modules/.prisma/
+
 FROM node:alpine AS runner
 WORKDIR /app
 
