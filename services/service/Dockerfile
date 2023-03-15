@@ -45,5 +45,4 @@ RUN adduser --system --uid 1001 expressjs
 USER expressjs
 COPY --from=installer /app .
 
-RUN yarn prisma generate
 CMD node services/service/bin/index.js
